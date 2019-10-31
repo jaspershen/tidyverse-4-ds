@@ -1,6 +1,6 @@
 --- 
-title: "Tidyverse for data science (Tidyverse数据分析)"
-author: "Xiaotao Shen"
+title: "Tidyverse数据分析"
+author: "Xiaotao Shen(申小涛)"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -10,25 +10,9 @@ link-citations: yes
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
 
-# Prerequisites
+# 前言
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+一直准备详细的把自己学习`tidyverse`用于数据分析的所有知识记录下来,原来准备使用博客,后来发现使用博客写书还是不太好用,所以还是准备使用`bookdown`.整本书准备以`R for data science`,`tidyver`官网以及自己在实际处理数据过程中遇到的问题为基础进行记录.整体分几章还没有想好.争取每天晚上写一点.
 
-The **bookdown** package can be installed from CRAN or Github:
+示例数据尽量使用在R中的自带数据,这样也方便大家以及我自己重复.
 
-```{r eval=FALSE}
-install.packages("bookdown")
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
