@@ -23,8 +23,8 @@
 }{}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
-            pdftitle={Tidyverse for data science (Tidyverse数据分析)},
-            pdfauthor={Xiaotao Shen},
+            pdftitle={Tidyverse数据分析},
+            pdfauthor={Xiaotao Shen(申小涛)},
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
@@ -116,10 +116,10 @@
 
 \setlength{\droptitle}{-2em}
 
-  \title{Tidyverse for data science (Tidyverse数据分析)}
+  \title{Tidyverse数据分析}
     \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-    \author{Xiaotao Shen}
+    \author{Xiaotao Shen(申小涛)}
     \preauthor{\centering\large\emph}
   \postauthor{\par}
       \predate{\centering\large\emph}
@@ -135,24 +135,12 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{prerequisites}{%
-\chapter{Prerequisites}\label{prerequisites}}
+\hypertarget{ux524dux8a00}{%
+\chapter{前言}\label{ux524dux8a00}}
 
-This is a \emph{sample} book written in \textbf{Markdown}. You can use anything that Pandoc's Markdown supports, e.g., a math equation \(a^2 + b^2 = c^2\).
+一直准备详细的把自己学习\texttt{tidyverse}用于数据分析的所有知识记录下来,原来准备使用博客,后来发现使用博客写书还是不太好用,所以还是准备使用\texttt{bookdown}.整本书准备以\texttt{R\ for\ data\ science},\texttt{tidyver}官网以及自己在实际处理数据过程中遇到的问题为基础进行记录.整体分几章还没有想好.争取每天晚上写一点.
 
-The \textbf{bookdown} package can be installed from CRAN or Github:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
-\CommentTok{# or the development version}
-\CommentTok{# devtools::install_github("rstudio/bookdown")}
-\end{Highlighting}
-\end{Shaded}
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading \texttt{\#}.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): \url{https://yihui.name/tinytex/}.
+示例数据尽量使用在R中的自带数据,这样也方便大家以及我自己重复.
 
 \hypertarget{intro}{%
 \chapter{Introduction}\label{intro}}
