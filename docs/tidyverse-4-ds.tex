@@ -30,46 +30,6 @@
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
 \bibliographystyle{apalike}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 \usepackage{graphicx,grffile}
 \makeatletter
@@ -124,7 +84,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-30}
+    \date{2019-10-31}
 
 \usepackage{booktabs}
 
@@ -142,76 +102,84 @@
 
 示例数据尽量使用在R中的自带数据,这样也方便大家以及我自己重复.
 
-\hypertarget{intro}{%
-\chapter{Introduction}\label{intro}}
+\hypertarget{long-wide-data}{%
+\chapter{长宽数据转换}\label{long-wide-data}}
 
-You can label chapter and section titles using \texttt{\{\#label\}} after them, e.g., we can reference Chapter \ref{intro}. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \ref{methods}.
+长数据和宽数据是我们在数据分析过程中最经常遇到的两种数据类型.
 
-Figures and tables with captions will be placed in \texttt{figure} and \texttt{table} environments, respectively.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{tidyverse-4-ds_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:} prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can reference tables generated from \texttt{knitr::kable()}, e.g., see Table \ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  宽数据: 最为常见的应该是宽数据.我们可以举个例子.每一行为一个基因,每一列为一个样品,每一个cell是一个数值.这时候得到的数据框就是宽数据.
+\end{itemize}
 
 \begin{table}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
+\caption{\label{tab:unnamed-chunk-1}<U+5BBD><U+6570><U+636E><U+793A><U+4F8B><U+6570><U+636E>}
 \centering
-\begin{tabular}[t]{rrrrl}
+\begin{tabular}[t]{lrrrrr}
 \toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+  & sample\_1 & sample\_2 & sample\_3 & sample\_4 & sample\_5\\
 \midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
+gene\_1 & 40 & 15 & 63 & 100 & 57\\
+gene\_2 & 69 & 8 & 67 & 9 & 50\\
+gene\_3 & 77 & 26 & 2 & 83 & 13\\
+gene\_4 & 39 & 52 & 94 & 60 & 55\\
+gene\_5 & 74 & 82 & 81 & 75 & 92\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-You can write citations, too. For example, we are using the \textbf{bookdown} package \citep{R-bookdown} in this sample book, which was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+可以看到宽数据的并不直接.而且有点像是二维的数据,比如我想知道sample1的gene2的表达量是多少,那就需要我从第一列(sample\_1)的第二行(gene\_2)定位到那个cell,然后得到数值.但是如果我们的定性信息多余两个呢?比如我们现在的问题是某个样品在某种条件下的某个基因的表达量.那么用宽数据就很难进行展示.所以另外一个比较常见的就是长数据.
+
+\begin{itemize}
+\tightlist
+\item
+  顾名思义,长数据就比较长.对于长数据来说,每一行是定义了一个case,前面的列都是用来描述这个case的属性,比如用长数据来展示我们上面的宽数据,就可以表示为下面的表格.
+\end{itemize}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-2}<U+957F><U+6570><U+636E><U+793A><U+4F8B><U+6570><U+636E>}
+\centering
+\begin{tabular}[t]{llr}
+\toprule
+Sample\_name & Gene\_name & Expression\\
+\midrule
+sample\_1 & gene\_1 & 11\\
+sample\_2 & gene\_1 & 84\\
+sample\_3 & gene\_1 & 29\\
+sample\_4 & gene\_1 & 67\\
+sample\_5 & gene\_1 & 81\\
+\addlinespace
+sample\_1 & gene\_2 & 61\\
+sample\_2 & gene\_2 & 100\\
+sample\_3 & gene\_2 & 5\\
+sample\_4 & gene\_2 & 15\\
+sample\_5 & gene\_2 & 73\\
+\addlinespace
+sample\_1 & gene\_3 & 65\\
+sample\_2 & gene\_3 & 82\\
+sample\_3 & gene\_3 & 39\\
+sample\_4 & gene\_3 & 88\\
+sample\_5 & gene\_3 & 92\\
+\addlinespace
+sample\_1 & gene\_4 & 83\\
+sample\_2 & gene\_4 & 56\\
+sample\_3 & gene\_4 & 80\\
+sample\_4 & gene\_4 & 31\\
+sample\_5 & gene\_4 & 25\\
+\addlinespace
+sample\_1 & gene\_5 & 85\\
+sample\_2 & gene\_5 & 89\\
+sample\_3 & gene\_5 & 35\\
+sample\_4 & gene\_5 & 2\\
+sample\_5 & gene\_5 & 9\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+从上面两个长款示例数据我们可以清晰的看到他们的区别.
 
 \hypertarget{literature}{%
 \chapter{Literature}\label{literature}}

@@ -1,0 +1,55 @@
+---
+always_allow_html: true
+---
+
+# 长宽数据转换 {#long-wide-data}
+
+长数据和宽数据是我们在数据分析过程中最经常遇到的两种数据类型.
+
+* 宽数据: 最为常见的应该是宽数据.我们可以举个例子.每一行为一个基因,每一列为一个样品,每一个cell是一个数值.这时候得到的数据框就是宽数据.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(tidyverse)
+data <-
+  sample(1:100, 25) %>% 
+  matrix(ncol = 5)
+rownames(data) <- paste("gene", 1:5, sep = "_")
+colnames(data) <- paste("sample", 1:5, sep = "_")
+
+library(knitr)
+knitr::kable(
+  data, booktabs = TRUE,
+  caption = '宽数据示例数据'
+)
+
+```
+
+可以看到宽数据的并不直接.而且有点像是二维的数据,比如我想知道sample1的gene2的表达量是多少,那就需要我从第一列(sample_1)的第二行(gene_2)定位到那个cell,然后得到数值.但是如果我们的定性信息多余两个呢?比如我们现在的问题是某个样品在某种条件下的某个基因的表达量.那么用宽数据就很难进行展示.所以另外一个比较常见的就是长数据.
+
+* 顾名思义,长数据就比较长.对于长数据来说,每一行是定义了一个case,前面的列都是用来描述这个case的属性,比如用长数据来展示我们上面的宽数据,就可以表示为下面的表格.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, cache=TRUE}
+library(tidyverse)
+data <-
+  sample(1:100, 25) %>% 
+  matrix(ncol = 5)
+rownames(data) <- paste("gene", 1:5, sep = "_")
+colnames(data) <- paste("sample", 1:5, sep = "_")
+data <- 
+  data %>% 
+  as.data.frame() %>% 
+  rownames_to_column(var = "Gene_name") %>% 
+  tidyr::pivot_longer(cols = -Gene_name,
+                      names_to = "Sample_name", 
+                      values_to = "Expression") %>% 
+  select(Sample_name, everything())
+  
+library(knitr)
+knitr::kable(
+  data, booktabs = TRUE,
+  caption = '长数据示例数据'
+)
+
+```
+
+从上面两个长款示例数据我们可以清晰的看到他们的区别.

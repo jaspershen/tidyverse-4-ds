@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 长宽数据转换 | Tidyverse数据分析</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 长宽数据转换 | Tidyverse数据分析" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 长宽数据转换 | Tidyverse数据分析" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Xiaotao Shen(申小涛)" />
+
+
+<meta name="date" content="2019-10-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="literature.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Tidyverse数据分析</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 前言</a></li>
+<li class="chapter" data-level="2" data-path="long-wide-data.html"><a href="long-wide-data.html"><i class="fa fa-check"></i><b>2</b> 长宽数据转换</a></li>
+<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
+<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
+<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Tidyverse数据分析</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="long-wide-data" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> 长宽数据转换</h1>
+<p>长数据和宽数据是我们在数据分析过程中最经常遇到的两种数据类型.</p>
+<ul>
+<li>宽数据: 最为常见的应该是宽数据.我们可以举个例子.每一行为一个基因,每一列为一个样品,每一个cell是一个数值.这时候得到的数据框就是宽数据.</li>
+</ul>
+<table>
+<caption><span id="tab:unnamed-chunk-1">Table 2.1: </span>&lt;U+5BBD&gt;&lt;U+6570&gt;&lt;U+636E&gt;&lt;U+793A&gt;&lt;U+4F8B&gt;&lt;U+6570&gt;&lt;U+636E&gt;</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">sample_1</th>
+<th align="right">sample_2</th>
+<th align="right">sample_3</th>
+<th align="right">sample_4</th>
+<th align="right">sample_5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gene_1</td>
+<td align="right">31</td>
+<td align="right">80</td>
+<td align="right">57</td>
+<td align="right">58</td>
+<td align="right">27</td>
+</tr>
+<tr class="even">
+<td>gene_2</td>
+<td align="right">69</td>
+<td align="right">46</td>
+<td align="right">23</td>
+<td align="right">79</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td>gene_3</td>
+<td align="right">94</td>
+<td align="right">98</td>
+<td align="right">49</td>
+<td align="right">45</td>
+<td align="right">47</td>
+</tr>
+<tr class="even">
+<td>gene_4</td>
+<td align="right">18</td>
+<td align="right">54</td>
+<td align="right">26</td>
+<td align="right">89</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td>gene_5</td>
+<td align="right">8</td>
+<td align="right">4</td>
+<td align="right">96</td>
+<td align="right">66</td>
+<td align="right">7</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到宽数据的并不直接.而且有点像是二维的数据,比如我想知道sample1的gene2的表达量是多少,那就需要我从第一列(sample_1)的第二行(gene_2)定位到那个cell,然后得到数值.但是如果我们的定性信息多余两个呢?比如我们现在的问题是某个样品在某种条件下的某个基因的表达量.那么用宽数据就很难进行展示.所以另外一个比较常见的就是长数据.</p>
+<ul>
+<li>顾名思义,长数据就比较长.对于长数据来说,每一行是定义了一个case,前面的列都是用来描述这个case的属性,比如用长数据来展示我们上面的宽数据,就可以表示为下面的表格.</li>
+</ul>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Table 2.2: </span>&lt;U+957F&gt;&lt;U+6570&gt;&lt;U+636E&gt;&lt;U+793A&gt;&lt;U+4F8B&gt;&lt;U+6570&gt;&lt;U+636E&gt;</caption>
+<thead>
+<tr class="header">
+<th align="left">Sample_name</th>
+<th align="left">Gene_name</th>
+<th align="right">Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">sample_1</td>
+<td align="left">gene_1</td>
+<td align="right">48</td>
+</tr>
+<tr class="even">
+<td align="left">sample_2</td>
+<td align="left">gene_1</td>
+<td align="right">89</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_3</td>
+<td align="left">gene_1</td>
+<td align="right">67</td>
+</tr>
+<tr class="even">
+<td align="left">sample_4</td>
+<td align="left">gene_1</td>
+<td align="right">87</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_5</td>
+<td align="left">gene_1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">sample_1</td>
+<td align="left">gene_2</td>
+<td align="right">36</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_2</td>
+<td align="left">gene_2</td>
+<td align="right">52</td>
+</tr>
+<tr class="even">
+<td align="left">sample_3</td>
+<td align="left">gene_2</td>
+<td align="right">19</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_4</td>
+<td align="left">gene_2</td>
+<td align="right">77</td>
+</tr>
+<tr class="even">
+<td align="left">sample_5</td>
+<td align="left">gene_2</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_1</td>
+<td align="left">gene_3</td>
+<td align="right">75</td>
+</tr>
+<tr class="even">
+<td align="left">sample_2</td>
+<td align="left">gene_3</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_3</td>
+<td align="left">gene_3</td>
+<td align="right">78</td>
+</tr>
+<tr class="even">
+<td align="left">sample_4</td>
+<td align="left">gene_3</td>
+<td align="right">56</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_5</td>
+<td align="left">gene_3</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">sample_1</td>
+<td align="left">gene_4</td>
+<td align="right">62</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_2</td>
+<td align="left">gene_4</td>
+<td align="right">26</td>
+</tr>
+<tr class="even">
+<td align="left">sample_3</td>
+<td align="left">gene_4</td>
+<td align="right">43</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_4</td>
+<td align="left">gene_4</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="left">sample_5</td>
+<td align="left">gene_4</td>
+<td align="right">84</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_1</td>
+<td align="left">gene_5</td>
+<td align="right">70</td>
+</tr>
+<tr class="even">
+<td align="left">sample_2</td>
+<td align="left">gene_5</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_3</td>
+<td align="left">gene_5</td>
+<td align="right">23</td>
+</tr>
+<tr class="even">
+<td align="left">sample_4</td>
+<td align="left">gene_5</td>
+<td align="right">27</td>
+</tr>
+<tr class="odd">
+<td align="left">sample_5</td>
+<td align="left">gene_5</td>
+<td align="right">40</td>
+</tr>
+</tbody>
+</table>
+<p>从上面两个长款示例数据我们可以清晰的看到他们的区别.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="literature.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["tidyverse-4-ds.pdf", "tidyverse-4-ds.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
