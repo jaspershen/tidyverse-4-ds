@@ -19,7 +19,7 @@ colnames(data) <- paste("sample", 1:5, sep = "_")
 library(knitr)
 knitr::kable(
   data, booktabs = TRUE,
-  caption = '宽数据示例数据'
+  caption = 'Demo of wide data'
 )
 
 ```
@@ -47,7 +47,7 @@ data <-
 library(knitr)
 knitr::kable(
   data, booktabs = TRUE,
-  caption = '长数据示例数据'
+  caption = 'Demo of long data'
 )
 
 ```
